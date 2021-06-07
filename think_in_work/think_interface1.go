@@ -2,6 +2,9 @@ package think_in_work
 
 import "fmt"
 
+//新的理解
+// 接口作为一个字段 更像是对原有的功能进行一个可扩展的方法
+
 // 剧透: 接口可以 作为方法的引用
 //got.Log()
 //got.OceanReq.Log()
@@ -40,6 +43,11 @@ func InitReqGetAdGroup() ReqGetAdGroup {
 	return res
 }
 
+func InitReqGetAdGroupV1() ReqGetAdGroup {
+	res := ReqGetAdGroup{OceanReq: &ReqGetAdGroup{}}
+	return res
+}
+
 // 感觉应该理解 成 ReqGetAdGroup 即是这个接口的实现 包含了这个接口
 
 // 实现两个接口 放在这个结构体初始化里面
@@ -51,14 +59,6 @@ func (req *A1) Log() string {
 	return ""
 }
 
-type A2 struct {
-}
-
-func (req *A2) Log() string {
-	println("A2 Log")
-	return ""
-}
-
 func InitReqGetAdGroupByA1() ReqGetAdGroup {
 	res := ReqGetAdGroup{OceanReq: &A1{}}
 	return res
@@ -67,3 +67,30 @@ func InitReqGetAdGroupByA1() ReqGetAdGroup {
 //引用方式 不同 ，即下面两个是又不小区别的..
 //got.Log()
 //got.OceanReq.Log()
+
+//  正确的使用方式
+type ReqGetAdGroupV2 struct {
+	OceanReq
+}
+
+type A2 struct {
+}
+
+func (req *A2) Log() string {
+	println("A2 Log")
+	return ""
+}
+
+func InitReqGetAdGroupV2() ReqGetAdGroupV2 {
+	res := ReqGetAdGroupV2{}
+	var _ OceanReq = res.OceanReq // Verify that T implements I.
+	//var _ OceanReq = (&res)(nil) // Verify that *T implements I.
+	return res
+}
+
+func InitReqGetAdGroupV3() ReqGetAdGroupV2 {
+	res := ReqGetAdGroupV2{OceanReq: &A2{}}
+	return res
+}
+
+//OceanReq: &A1{}
