@@ -1,8 +1,23 @@
 package think_in_work
 
+import "fmt"
+
 // 剧透: 接口可以 作为方法的引用
 //got.Log()
 //got.OceanReq.Log()
+
+//  正确的使用方式
+type ReqGetAdGroupV1 struct {
+	OceanReq
+}
+
+func (req *ReqGetAdGroupV1) Log() string {
+	if req.OceanReq == nil {
+		// 使用默认的打印
+		return fmt.Sprintf("")
+	}
+	return req.OceanReq.Log()
+}
 
 //  针对接口的思考01 我在写代码的时候 一不小心将 一个接口写成来一个结构体的一个字段 .
 
