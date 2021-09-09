@@ -8,6 +8,4 @@
 -l 禁用内联
 
 
-GOOS=linux GOARCH=amd64 go tool compile -l -N -S swap.go > swap.s 2>&1
-
 https://9p.io/sys/doc/asm.html
