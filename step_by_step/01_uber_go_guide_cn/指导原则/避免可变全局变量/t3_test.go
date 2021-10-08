@@ -25,6 +25,7 @@ func Test_3(t *testing.T) {
 }
 
 // ============================== 分割线 ========================
+
 // 使用一个结果体包含全局变量 ?  单例?
 type singer struct {
 	now func() time.Time
