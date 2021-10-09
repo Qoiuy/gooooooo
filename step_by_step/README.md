@@ -11,3 +11,10 @@ start time: 2021-09-13
   |￣3￣￣ 
  |￣2￣￣ 
 |￣1￣￣ Uber 编程规范 chapter  https://github.com/xxjwxc/uber_go_guide_cn/blob/master/README.md
+
+
+
+
+TODO 
+chan是怎么实现的
+promise包  读源码
