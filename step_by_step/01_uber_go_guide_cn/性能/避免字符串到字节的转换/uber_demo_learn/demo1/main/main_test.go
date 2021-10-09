@@ -1,0 +1,23 @@
+package main
+
+import (
+	"bytes"
+	"testing"
+)
+
+func BenchmarkBad(b *testing.B) {
+	var w = bytes.Buffer{}
+	b.ResetTimer() // 重置定时器
+	for i := 0; i < b.N; i++ {
+		w.Write([]byte("Hello world"))
+	}
+
+}
+func BenchmarkGood(b *testing.B) {
+	var w = bytes.Buffer{}
+	data := []byte("Hello world")
+	b.ResetTimer() // 重置定时器
+	for i := 0; i < b.N; i++ {
+		w.Write(data)
+	}
+}
