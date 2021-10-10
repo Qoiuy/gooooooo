@@ -26,5 +26,3 @@ func BenchmarkStrconv(b *testing.B) {
 // 大概一倍左右的查询
 //BenchmarkFmtSprint-8     9984238               119 ns/op              39 B/op          2 allocs/op
 //BenchmarkStrconv-8      20017238                57.8 ns/op            31 B/op          1 allocs/op
-
-//TODO 明天2021-10-10早晨 脑子清醒的时候把 fmt 和 strconv 原理看了
