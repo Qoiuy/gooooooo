@@ -1,5 +1,5 @@
+### 看完内容我就一个疑惑 simplego.l 怎么出来的
 
-看完内容我就一个疑惑 simplego.l 怎么出来的
 (大大的脑袋,小小的疑惑)
 
 
@@ -14,10 +14,10 @@ flex 2.6.4 Apple(flex-34)
   cat main.go | ./simplego
 ```
 
-<img src="/Users/sanfeng/Library/Mobile Documents/com~apple~CloudDocs/Documents/Typroa/img/image-20211227204022903.png" alt="image-20211227204022903" style="zoom:25%;" />
+<img src="https://iszhanggc-private-blog.oss-cn-beijing.aliyuncs.com/typora_pic/image-20211227204022903.png" alt="image-20211227204022903" style="zoom:25%;" />
 
 
-
+跑偏的
 
 
 google 搜索 golang lexer parser 没有什么认可的结果
@@ -31,3 +31,37 @@ google 搜索 golang lexer parser 没有什么认可的结果
 
 
 
+## golang src 中.l文件
+
+src 源码中没有`.l文件`
+
+<img src="https://iszhanggc-private-blog.oss-cn-beijing.aliyuncs.com/typora_pic/image-20211227204433845.png" alt="image-20211227204433845" style="zoom:50%;" />
+
+怎么实现的呢?
+
+	/usr/local/go/src/cmd/compile/internal/syntax/scanner.go:14
+
+
+
+
+scanner 用来扫描文件 核心逻辑 在 scanner.next() 中 
+
+解析map 参考tokens.go文件
+
+	·/usr/local/go/src/cmd/compile/internal/syntax/tokens.go:12
+
+解析分为 名称 操作 分隔符 关键字和空格
+
+解析结果是啥样的呢?
+
+准备去跑一下testcase   看到了一个文件 解析的结果 
+
+
+
+<img src="https://iszhanggc-private-blog.oss-cn-beijing.aliyuncs.com/typora_pic/image-20211227214200522.png" alt="image-20211227214200522" style="zoom:50%;" />
+
+
+
+
+
+词法分析 看到这里应该差不多了
