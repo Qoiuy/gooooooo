@@ -32,12 +32,12 @@ func TestCodeSnippet(t *testing.T) {
 	}
 }
 
-var src_ = flag.String("src", "./scanner.go", "source file to parse")
-
 func TestFile(t *testing.T) {
 	if testing.Short() {
 		t.Skip("skipping test in short mode")
 	}
+
+	var src_ = flag.String("src", "./scanner.go", "source file to parse")
 
 	filename := *src_ // can be changed via -src flag
 	src, err := os.Open(filename)
